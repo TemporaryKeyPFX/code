@@ -1,0 +1,40 @@
+# Running MPI Programs in Visual Studio (Windows)
+
+1. Install Microsoft MPI:
+   - Download and install from:
+     https://learn.microsoft.com/en-us/message-passing-interface/microsoft-mpi
+
+2. Open Visual Studio:
+   - Create a new C++ Console Application.
+   - Replace `main.cpp` with your MPI code.
+
+3. Configure MPI in Visual Studio:
+   - Right-click on the project → **Properties**.
+   - Go to **Configuration Properties** → **VC++ Directories**:
+     - Add the MPI include path to **Include Directories** (e.g., `C:\Program Files (x86)\Microsoft SDKs\MPI\Include`)
+     - Add the MPI lib path to **Library Directories** (e.g., `C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64`)
+   - Go to **Linker** → **Input** → **Additional Dependencies**:
+     - Add: `msmpi.lib`
+
+4. Build the project:
+   - Use **Build > Build Solution (Ctrl+Shift+B)**
+
+5. Run the executable with MPI:
+   - Open Command Prompt.
+   - Navigate to the output directory (usually `.\x64\Debug\`)
+   - Run the following command:
+
+     ```bash
+     mpiexec -n 4 your_program.exe
+     ```
+
+     Replace `4` with the number of processes and `your_program.exe` with your actual executable.
+
+6. (Optional) Create a `run_mpi.bat` file to automate:
+   ```bat
+   @echo off
+   mpiexec -n 4 your_program.exe
+   pause
+
+
+Lab 6 remya maam link - https://colab.research.google.com/drive/1WbIimOal2CUxFnL6IVbQxorknLmpkYm9?usp=sharing#scrollTo=HvVlldc48C1Z
